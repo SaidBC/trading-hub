@@ -1,5 +1,9 @@
 import LoginForm from "@/components/auth/LoginForm";
 import { Metadata } from "next";
+import { Suspense } from "react";
+
+// Add dynamic configuration to prevent static optimization
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Log In | Trading Hub",
@@ -7,5 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return <LoginForm />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginForm />
+    </Suspense>
+  );
 }
