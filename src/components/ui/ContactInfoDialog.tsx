@@ -28,20 +28,12 @@ interface ContactInfoDialogProps {
   open: boolean;
   onClose: () => void;
   onSubmit: () => void;
-  selectedContact: string | null;
-  contactValue: string;
-  onContactSelect: (contact: string) => void;
-  onContactValueChange: (value: string) => void;
 }
 
 const ContactInfoDialog: React.FC<ContactInfoDialogProps> = ({
   open,
   onClose,
   onSubmit,
-  selectedContact,
-  contactValue,
-  onContactSelect,
-  onContactValueChange,
 }) => {
   // State to track multiple contacts
   const [contacts, setContacts] = React.useState<ContactInfo[]>([]);

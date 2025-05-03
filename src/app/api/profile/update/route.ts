@@ -29,6 +29,7 @@ export async function PUT(req: NextRequest) {
     });
 
     // Remove sensitive data
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userWithoutPassword } = updatedUser;
 
     return NextResponse.json(

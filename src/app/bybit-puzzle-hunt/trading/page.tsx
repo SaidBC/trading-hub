@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { 
   Container, 
   Typography, 
   Box, 
   Button, 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useTheme, 
   CircularProgress,
   Alert,
@@ -14,21 +16,18 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  TextField,
   Stack,
   Divider,
   Chip
 } from "@mui/material";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import PersonIcon from "@mui/icons-material/Person";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 // Import components
 import TradingCard from "@/components/ui/TradingCard";
 import ContactDialog from "@/components/ui/ContactDialog";
-import PuzzleSelector from "@/components/ui/PuzzleSelector";
 
 interface TradingPost {
   id: string;
@@ -47,6 +46,7 @@ interface TradingPost {
 export default function BybitPuzzleHuntTrading() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const theme = useTheme();
   
   // State for posts
@@ -55,8 +55,11 @@ export default function BybitPuzzleHuntTrading() {
   const [error, setError] = useState("");
   
   // State for creating posts
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hasPieces, setHasPieces] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [needsPieces, setNeedsPieces] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState("");
@@ -94,8 +97,9 @@ export default function BybitPuzzleHuntTrading() {
       
       const data = await response.json();
       setPosts(data.posts);
-    } catch (err: any) {
-      setError(err.message || "An error occurred while fetching posts");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred while fetching posts";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -164,8 +168,9 @@ export default function BybitPuzzleHuntTrading() {
       
       // Refresh posts
       fetchPosts();
-    } catch (err: any) {
-      setCreateError(err.message || "An error occurred while creating the post");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred while creating the post";
+      setCreateError(errorMessage);
     } finally {
       setCreating(false);
     }
@@ -186,8 +191,9 @@ export default function BybitPuzzleHuntTrading() {
       
       // Refresh posts
       fetchPosts();
-    } catch (err: any) {
-      setNotification({ open: true, message: err.message || "An error occurred while deleting the post", severity: "error" });
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred while deleting the post";
+      setNotification({ open: true, message: errorMessage, severity: "error" });
     }
   };
 
@@ -234,6 +240,7 @@ export default function BybitPuzzleHuntTrading() {
   };
 
   // Process the completed selection
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmitSelection = () => {
     handleCreatePost();
   };
@@ -388,7 +395,7 @@ export default function BybitPuzzleHuntTrading() {
                     }}
                     onClick={() => handlePuzzleSelect(puzzle, 'need')}
                   >
-                    <img
+                    <Image
                       src={`/bybit-puzzle-hunt/${puzzle}/1.png`}
                       alt={puzzle}
                       width={100}
@@ -437,7 +444,7 @@ export default function BybitPuzzleHuntTrading() {
                     }}
                     onClick={() => handleNeedPieceSelect(idx + 1)}
                   >
-                    <img
+                    <Image
                       src={`/bybit-puzzle-hunt/${selectedNeedPuzzle}/${idx + 1}.png`}
                       alt={`Piece ${idx + 1}`}
                       width={90}
@@ -540,7 +547,7 @@ export default function BybitPuzzleHuntTrading() {
                           }}
                           onClick={() => handleHasPieceSelect(selectedHasPuzzle, idx + 1)}
                         >
-                          <img
+                          <Image
                             src={`/bybit-puzzle-hunt/${selectedHasPuzzle}/${idx + 1}.png`}
                             alt={`Piece ${idx + 1}`}
                             width={70}

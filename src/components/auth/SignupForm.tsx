@@ -58,8 +58,9 @@ export default function SignupForm() {
       
       // Redirect to login page after successful signup
       router.push("/auth/login?registered=true");
-    } catch (err: any) {
-      setError(err.message || "An error occurred during signup");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred during signup";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

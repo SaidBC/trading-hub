@@ -6,7 +6,6 @@ import {
   Box, 
   TextField, 
   Button, 
-  Grid, 
   Alert,
   CircularProgress
 } from "@mui/material";
@@ -68,8 +67,9 @@ export default function ChangePassword() {
         newPassword: "",
         confirmPassword: "",
       });
-    } catch (err: any) {
-      setError(err.message || "An error occurred");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

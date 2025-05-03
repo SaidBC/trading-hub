@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 // GET endpoint to fetch all trading posts
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Fetch trading posts from the correct table
     const posts = await db.tradingPost.findMany({

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { Box, Stack, Typography, Dialog, DialogTitle, DialogContent, Button, Chip, Alert, Divider } from "@mui/material";
 
 interface PuzzleSelectorProps {
@@ -14,9 +15,11 @@ interface PuzzleSelectorProps {
 const PuzzleSelector: React.FC<PuzzleSelectorProps> = ({
   open,
   onClose,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   selectedPuzzle,
   onPuzzleSelect,
   onPieceSelect,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onBack,
 }) => {
   // Track the selection flow
@@ -154,7 +157,7 @@ const PuzzleSelector: React.FC<PuzzleSelectorProps> = ({
                 }}
                 onClick={() => handlePuzzleSelect(puzzle)}
               >
-                <img
+                <Image
                   src={`/bybit-puzzle-hunt/${puzzle}/1.png`}
                   alt={puzzle}
                   width={100}
@@ -202,7 +205,7 @@ const PuzzleSelector: React.FC<PuzzleSelectorProps> = ({
                   }}
                   onClick={() => handleNeedPieceSelect(idx + 1)}
                 >
-                  <img
+                  <Image
                     src={`/bybit-puzzle-hunt/${needPuzzle}/${idx + 1}.png`}
                     alt={`Piece ${idx + 1}`}
                     width={90}
@@ -305,7 +308,7 @@ const PuzzleSelector: React.FC<PuzzleSelectorProps> = ({
                         }}
                         onClick={() => handleHasPieceSelect(hasPuzzle, idx + 1)}
                       >
-                        <img
+                        <Image
                           src={`/bybit-puzzle-hunt/${hasPuzzle}/${idx + 1}.png`}
                           alt={`Piece ${idx + 1}`}
                           width={70}

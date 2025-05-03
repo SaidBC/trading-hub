@@ -53,8 +53,9 @@ export default function AdminsPage() {
         
         const data = await response.json();
         setAdmins(data.admins);
-      } catch (err: any) {
-        setError(err.message || "An error occurred while fetching admin users");
+      } catch (err: Error | unknown) {
+        const errorMessage = err instanceof Error ? err.message : "An error occurred while fetching admin users";
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

@@ -50,8 +50,9 @@ export default function LoginForm() {
       // Redirect to home page after successful login
       router.push("/bybit-puzzle-hunt");
       router.refresh();
-    } catch (err: any) {
-      setError(err.message || "An error occurred during login");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred during login";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { 
-  Typography, 
   Box, 
   TextField, 
   Button, 
-  Grid, 
   Avatar, 
   Chip,
   Alert,
@@ -62,8 +60,9 @@ export default function ProfileInfo({ user }: ProfileInfoProps) {
 
       setSuccess("Profile updated successfully");
       router.refresh();
-    } catch (err: any) {
-      setError(err.message || "An error occurred");
+    } catch (err: Error | unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

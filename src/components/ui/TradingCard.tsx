@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
   Card,
   CardHeader,
@@ -114,14 +115,16 @@ const TradingCard: React.FC<TradingCardProps> = ({
                                 }}
                               >
                                 <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
-                                  <img
+                                  <Image
                                     src={`/bybit-puzzle-hunt/${puzzleType}/${pieceNumber}.png`}
                                     alt={`Piece ${pieceNumber}`}
-                                    width="100%"
-                                    height="100%"
+                                    width={100}
+                                    height={100}
                                     style={{
                                       borderRadius: 2,
                                       objectFit: 'cover',
+                                      width: '100%',
+                                      height: '100%',
                                     }}
                                     onError={(e) => {
                                       const target = e.target as HTMLImageElement;
@@ -262,7 +265,8 @@ const TradingCard: React.FC<TradingCardProps> = ({
                     {has}
                   </Typography>
                 );
-              } catch (error) {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              } catch (_error) {
                 return (
                   <Typography variant="body1" sx={{ mb: 2, color: "#fff" }}>
                     {has}
@@ -329,14 +333,16 @@ const TradingCard: React.FC<TradingCardProps> = ({
                             overflow: 'hidden',
                           }}
                         >
-                          <img
+                          <Image
                             src={`/bybit-puzzle-hunt/${puzzleType}/${num}.png`}
                             alt={`Piece ${num}`}
-                            width="100%"
-                            height="100%"
+                            width={50}
+                            height={50}
                             style={{
                               borderRadius: 2,
                               objectFit: 'cover',
+                              width: '100%',
+                              height: '100%',
                               opacity: isNeededPiece ? 1 : 0.4,
                               filter: isNeededPiece ? 'none' : 'grayscale(80%)',
                             }}

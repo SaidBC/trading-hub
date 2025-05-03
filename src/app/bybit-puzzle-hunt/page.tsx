@@ -1,13 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Typography, Box, Button, Grid, Card, CardContent } from "@mui/material";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
 export default function BybitPuzzleHunt() {
-  const router = useRouter();
 
   // Uncomment to automatically redirect to trading page
   // useEffect(() => {
