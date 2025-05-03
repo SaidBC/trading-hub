@@ -70,15 +70,15 @@ const ContactDialog: React.FC<ContactDialogProps> = ({
     }
   };
 
-  // Create dummy links with username for each platform
-  const getDummyLink = (platform: string) => {
+  // Create actual links based on user's contact information
+  const getContactLink = (platform: string) => {
     switch (platform) {
       case 'whatsapp':
-        return `https://wa.me/dummy-${username}`;
+        return userContact?.whatsapp ? `https://wa.me/${userContact.whatsapp}` : '#';
       case 'telegram':
-        return `https://t.me/dummy-${username}`;
+        return userContact?.telegram ? `https://t.me/${userContact.telegram}` : '#';
       case 'discord':
-        return `https://discord.com/users/dummy-${username}`;
+        return userContact?.discord ? `https://discord.com/users/${userContact.discord}` : '#';
       default:
         return '#';
     }
@@ -147,7 +147,7 @@ const ContactDialog: React.FC<ContactDialogProps> = ({
                     "&:hover": { bgcolor: userContact?.whatsapp ? "rgba(37,211,102,0.1)" : "transparent" },
                     pointerEvents: userContact?.whatsapp ? "auto" : "none",
                   }}
-                  href={getDummyLink('whatsapp')}
+                  href={getContactLink('whatsapp')}
                   target="_blank"
                   disabled={!userContact?.whatsapp}
                 >
@@ -172,7 +172,7 @@ const ContactDialog: React.FC<ContactDialogProps> = ({
                     "&:hover": { bgcolor: userContact?.telegram ? "rgba(0,136,204,0.1)" : "transparent" },
                     pointerEvents: userContact?.telegram ? "auto" : "none",
                   }}
-                  href={getDummyLink('telegram')}
+                  href={getContactLink('telegram')}
                   target="_blank"
                   disabled={!userContact?.telegram}
                 >
@@ -197,7 +197,7 @@ const ContactDialog: React.FC<ContactDialogProps> = ({
                     "&:hover": { bgcolor: userContact?.discord ? "rgba(88,101,242,0.1)" : "transparent" },
                     pointerEvents: userContact?.discord ? "auto" : "none",
                   }}
-                  href={getDummyLink('discord')}
+                  href={getContactLink('discord')}
                   target="_blank"
                   disabled={!userContact?.discord}
                 >
